@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  snapserver:
+    build: ./snapserver
+    restart: always
+    network_mode: host
+    volumes:
+      - snapcast:/var/cache/snapcast
+  airplay:
+    build: ./airplay
+    restart: always
+    network_mode: host
+    volumes:
+      - /run/dbus:/run/dbus
+      - snapcast:/var/cache/snapcast
+    environment:
+      DEVICE_NAME: Snapcast
+  librespot:
+    build: ./librespot
+    restart: on-failure
+    network_mode: host
+    volumes:
+      - snapcast:/var/cache/snapcast
+    environment:
+      DEVICE_NAME: Snapcast
+
+volumes:
+  snapcast:
