@@ -1,12 +1,14 @@
 version: '3'
 
 services:
+
   snapserver:
     build: ./snapserver
     restart: always
     network_mode: host
     volumes:
       - snapcast:/var/cache/snapcast
+
   airplay:
     build: ./airplay
     restart: always
@@ -15,7 +17,8 @@ services:
       - /run/dbus:/run/dbus
       - snapcast:/var/cache/snapcast
     environment:
-      DEVICE_NAME: Snapcast
+      DEVICE_NAME: Soundscape
+
   librespot:
     build: ./librespot
     restart: on-failure
@@ -23,7 +26,7 @@ services:
     volumes:
       - snapcast:/var/cache/snapcast
     environment:
-      DEVICE_NAME: Snapcast
+      DEVICE_NAME: Soundscape
 
 volumes:
   snapcast:
