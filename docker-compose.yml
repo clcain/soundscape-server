@@ -4,7 +4,7 @@ services:
 
   airplay:
     build: ./airplay
-    restart: on-failure
+    restart: always
     network_mode: host
     volumes:
       - snapcast:/var/cache/snapcast
@@ -13,7 +13,7 @@ services:
 
   librespot:
     build: ./librespot
-    restart: on-failure
+    restart: always
     network_mode: host
     volumes:
       - snapcast:/var/cache/snapcast
@@ -22,7 +22,7 @@ services:
 
   snapserver:
     build: ./snapserver
-    restart: on-failure
+    restart: always
     network_mode: host
     volumes:
       - snapcast:/var/cache/snapcast
