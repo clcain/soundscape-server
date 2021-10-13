@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install -y \
     wget && \
     apt-get clean
 
-RUN wget "https://github.com/badaix/snapcast/releases/download/v${SNAPCAST_VERSION}/snapserver_${SNAPCAST_VERSION}-1_amd64.deb" && apt-get install -y "./snapserver_$SNAPCAST_VERSION-1_amd64.deb" && rm "snapserver_${SNAPCAST_VERSION}-1_amd64.deb"
+RUN wget "https://github.com/badaix/snapcast/releases/download/v${SNAPCAST_VERSION}/snapserver_${SNAPCAST_VERSION}-1_$(dpkg --print-architecture).deb" && apt-get install -y "./snapserver_$SNAPCAST_VERSION-1_$(dpkg --print-architecture).deb" && rm "snapserver_${SNAPCAST_VERSION}-1_$(dpkg --print-architecture).deb"
 
 COPY snapserver.conf /etc/snapserver.conf
 COPY start.sh /
