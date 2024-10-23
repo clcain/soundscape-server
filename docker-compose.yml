@@ -1,34 +1,10 @@
-version: '3'
-
 services:
-
-  airplay:
-    build: ./airplay
-    restart: always
-    network_mode: host
-    volumes:
-      - snapcast:/var/cache/snapcast
-      - /var/run/dbus:/var/run/dbus
-    env_file:
-      - .env
-
-  librespot:
-    build: ./librespot
-    restart: always
-    network_mode: host
-    volumes:
-      - snapcast:/var/cache/snapcast
-    env_file:
-      - .env
-
   snapserver:
-    build: ./snapserver
-    restart: always
+    image: clcain/snapserver
+    restart: unless-stopped
     network_mode: host
     volumes:
-      - snapcast:/var/cache/snapcast
+      - /etc/localtime:/etc/localtime:ro
+      - ./snapserver/snapserver.conf:/etc/snapserver.conf:ro
     env_file:
       - .env
-
-volumes:
-  snapcast:
